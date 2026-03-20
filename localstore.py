@@ -27,7 +27,7 @@ from pathlib import Path
 # ─────────────────────────────────────────────
 
 # URL do JSON hospedado no GitHub (substitua pelo seu)
-CATALOG_URL = "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/data/apps.json"
+CATALOG_URL = "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/data/apps.json"
 
 # Diretório local de dados do LocalStore
 DATA_DIR = Path.home() / ".localstore"
@@ -291,16 +291,24 @@ class AppCard(tk.Frame):
         btn_row = tk.Frame(inner, bg=inner_bg)
         btn_row.pack(fill="x", pady=(12, 0))
 
+        dl_url = app_data.get("downloads", {}).get(CURRENT_OS, "")
+        is_direct_exe = dl_url.endswith(".exe")
+
         if not is_installed:
-            StyledButton(btn_row, "⬇  Instalar", style="primary",
+            label = "⬇  Baixar" if is_direct_exe else "⬇  Instalar"
+            StyledButton(btn_row, label, style="primary",
                          command=lambda: self.on_install and self.on_install(app_data),
                          width=110, height=30).pack(side="left", padx=(0, 8))
         else:
+            if is_direct_exe:
+                StyledButton(btn_row, "▶  Jogar", style="primary",
+                             command=lambda: self.on_install and self.on_install(app_data),
+                             width=100, height=30).pack(side="left", padx=(0, 8))
             if has_update:
                 StyledButton(btn_row, "⬆  Atualizar", style="secondary",
                              command=lambda: self.on_update and self.on_update(app_data),
                              width=110, height=30).pack(side="left", padx=(0, 8))
-            else:
+            elif not is_direct_exe:
                 lbl = tk.Label(btn_row, text="✓ Atualizado",
                                font=("Segoe UI", 9),
                                bg=inner_bg, fg=COLORS["accent"])
@@ -756,9 +764,12 @@ class LocalStoreApp(tk.Tk):
                                    f"{app_data['name']} não tem download para {CURRENT_OS}.")
             return
 
-        if not messagebox.askyesno("Confirmar instalação",
-                                   f"Instalar {app_data['name']} v{app_data['version']}?\n\n"
-                                   f"O script de instalação será executado com permissões do usuário atual."):
+        dl_url = dl.get(CURRENT_OS, "")
+        is_direct_exe = dl_url.endswith(".exe")
+        msg = (f"Baixar e abrir {app_data['name']} v{app_data['version']}?\n\nO .exe será salvo em ~/.localstore/apps/ e aberto direto."
+               if is_direct_exe else
+               f"Instalar {app_data['name']} v{app_data['version']}?\n\nO script de instalação será executado.")
+        if not messagebox.askyesno("Confirmar", msg):
             return
 
         def worker():
@@ -778,41 +789,55 @@ class LocalStoreApp(tk.Tk):
                 download_file(pkg_url, pkg_path,
                               progress_cb=lambda p: self._progress_var.set(p * 0.7))
 
-                # Extrair
-                self._set_status("Extraindo arquivos...")
-                extract_dir = tmp / "extracted"
-                extract_dir.mkdir()
-                if pkg_name.endswith(".zip"):
-                    with zipfile.ZipFile(pkg_path) as z:
-                        z.extractall(extract_dir)
-                elif pkg_name.endswith((".tar.gz", ".tgz")):
-                    with tarfile.open(pkg_path) as t:
-                        t.extractall(extract_dir)
-
-                # Baixar script de instalação
                 scripts = app_data.get("install_scripts", {})
-                if CURRENT_OS in scripts:
-                    self._set_status("Baixando script de instalação...")
-                    script_url = scripts[CURRENT_OS]
-                    script_name = script_url.split("/")[-1]
-                    script_path = tmp / script_name
-                    download_file(script_url, script_path,
-                                  progress_cb=lambda p: self._progress_var.set(0.7 + p * 0.2))
 
-                    # Executar script
-                    self._set_status("Executando instalação...")
-                    self._progress_var.set(0.9)
+                if pkg_name.endswith(".exe"):
+                    # ── Modo direto: .exe sem installer ──────────────
+                    # Salvar em pasta permanente dentro de ~/.localstore/apps/
+                    apps_dir = DATA_DIR / "apps" / app_data["id"]
+                    apps_dir.mkdir(parents=True, exist_ok=True)
+                    final_exe = apps_dir / pkg_name
+                    shutil.copy2(pkg_path, final_exe)
+                    self._progress_var.set(0.95)
+                    self._set_status(f"Abrindo {app_data['name']}...")
+                    subprocess.Popen([str(final_exe)], cwd=str(apps_dir))
+                    install_dir = str(apps_dir)
 
-                    if CURRENT_OS == "windows":
-                        cmd = ["cmd", "/c", str(script_path)]
-                    else:
-                        os.chmod(script_path, 0o755)
-                        cmd = ["bash", str(script_path)]
+                else:
+                    # ── Modo com extração + script ────────────────────
+                    self._set_status("Extraindo arquivos...")
+                    extract_dir = tmp / "extracted"
+                    extract_dir.mkdir()
+                    if pkg_name.endswith(".zip"):
+                        with zipfile.ZipFile(pkg_path) as z:
+                            z.extractall(extract_dir)
+                    elif pkg_name.endswith((".tar.gz", ".tgz")):
+                        with tarfile.open(pkg_path) as t:
+                            t.extractall(extract_dir)
 
-                    result = subprocess.run(cmd, cwd=str(tmp), capture_output=True, text=True)
-                    log(f"Install stdout: {result.stdout}")
-                    if result.returncode != 0:
-                        log(f"Install stderr: {result.stderr}")
+                    if CURRENT_OS in scripts:
+                        self._set_status("Baixando script de instalação...")
+                        script_url = scripts[CURRENT_OS]
+                        script_name = script_url.split("/")[-1]
+                        script_path = tmp / script_name
+                        download_file(script_url, script_path,
+                                      progress_cb=lambda p: self._progress_var.set(0.7 + p * 0.2))
+
+                        self._set_status("Executando instalação...")
+                        self._progress_var.set(0.9)
+
+                        if CURRENT_OS == "windows":
+                            cmd = ["cmd", "/c", str(script_path)]
+                        else:
+                            os.chmod(script_path, 0o755)
+                            cmd = ["bash", str(script_path)]
+
+                        result = subprocess.run(cmd, cwd=str(tmp), capture_output=True, text=True)
+                        log(f"Install stdout: {result.stdout}")
+                        if result.returncode != 0:
+                            log(f"Install stderr: {result.stderr}")
+
+                    install_dir = str(extract_dir)
 
                 # Registrar no histórico
                 self.history[app_data["id"]] = {
@@ -820,11 +845,11 @@ class LocalStoreApp(tk.Tk):
                     "version":      app_data["version"],
                     "os":           CURRENT_OS,
                     "installed_at": datetime.now().isoformat(),
-                    "install_dir":  str(extract_dir),
+                    "install_dir":  install_dir,
                 }
                 save_history(self.history)
 
-                # Limpeza
+                # Limpeza da pasta temporária
                 shutil.rmtree(tmp, ignore_errors=True)
 
                 self._progress_var.set(1.0)
