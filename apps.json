@@ -3,37 +3,27 @@
     "version": "1.0.0",
     "updated": "2025-01-01",
     "maintainer": "BegulaIsBegning",
-    "store_name": "LocalStore",
-    "description": "App Store local baseada em GitHub"
+    "store_name": "Pancaked",
+    "description": "App Store local"
   },
   "apps": [
     {
-      "id": "devnotes",
-      "name": "DevNotes",
-      "version": "2.1.0",
-      "category": "Produtividade",
-      "description": "Editor de notas rápidas para desenvolvedores com suporte a Markdown e syntax highlight.",
-      "author": "DevTeam",
-      "icon": "📝",
-      "tags": ["notas", "markdown", "editor", "dev"],
-      "size": "12MB",
+      "id": "pizzatycoon",
+      "name": "Pizza Tycoon",
+      "version": "1.0.0",
+      "category": "Jogos",
+      "description": "O clássico jogo de gerenciamento de pizzaria.",
+      "author": "Miguu",
+      "icon": "🍕",
+      "tags": ["jogo", "tycoon", "pizza"],
+      "size": "5.4MB",
       "downloads": {
-        "windows": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/apps/devnotes/devnotes-windows.zip",
-        "linux": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/apps/devnotes/devnotes-linux.tar.gz",
-        "macos": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/apps/devnotes/devnotes-macos.tar.gz"
-      },
-      "install_scripts": {
-        "windows": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/scripts/windows/install-devnotes.bat",
-        "linux": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/scripts/linux/install-devnotes.sh",
-        "macos": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/scripts/macos/install-devnotes.sh"
+        "windows": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/apps/pizzatycoon/PizzaTycooned.exe"
       },
       "dependencies": [],
       "changelog": {
-        "2.1.0": "Adicionado suporte a temas escuros e exportação para PDF",
-        "2.0.0": "Reescrito do zero com melhor performance",
         "1.0.0": "Lançamento inicial"
       },
-      "screenshots": [],
       "homepage": "https://github.com/BegulaIsBegning/pancaked"
     }
   ]
