@@ -27,7 +27,7 @@ from pathlib import Path
 # ─────────────────────────────────────────────
 
 # URL do JSON hospedado no GitHub (substitua pelo seu)
-CATALOG_URL = "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/data/apps.json"
+CATALOG_URL = "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/data/apps.json"
 
 # Diretório local de dados do LocalStore
 DATA_DIR = Path.home() / ".localstore"

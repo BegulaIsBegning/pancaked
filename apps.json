@@ -2,7 +2,7 @@
   "_meta": {
     "version": "1.0.0",
     "updated": "2025-01-01",
-    "maintainer": "seu-usuario-github",
+    "maintainer": "BegulaIsBegning",
     "store_name": "LocalStore",
     "description": "App Store local baseada em GitHub"
   },
@@ -18,14 +18,14 @@
       "tags": ["notas", "markdown", "editor", "dev"],
       "size": "12MB",
       "downloads": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/devnotes/devnotes-windows.zip",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/devnotes/devnotes-linux.tar.gz",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/devnotes/devnotes-macos.tar.gz"
+        "windows": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/apps/devnotes/devnotes-windows.zip",
+        "linux": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/apps/devnotes/devnotes-linux.tar.gz",
+        "macos": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/apps/devnotes/devnotes-macos.tar.gz"
       },
       "install_scripts": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/windows/install-devnotes.bat",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/linux/install-devnotes.sh",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/macos/install-devnotes.sh"
+        "windows": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/scripts/windows/install-devnotes.bat",
+        "linux": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/scripts/linux/install-devnotes.sh",
+        "macos": "https://raw.githubusercontent.com/BegulaIsBegning/pancaked/main/scripts/macos/install-devnotes.sh"
       },
       "dependencies": [],
       "changelog": {
@@ -34,120 +34,7 @@
         "1.0.0": "Lançamento inicial"
       },
       "screenshots": [],
-      "homepage": "https://github.com/SEU_USUARIO/devnotes"
-    },
-    {
-      "id": "quickterm",
-      "name": "QuickTerm",
-      "version": "1.5.2",
-      "category": "Desenvolvimento",
-      "description": "Terminal multi-abas com perfis configuráveis, autocompletar e integração com SSH.",
-      "author": "TerminalCo",
-      "icon": "💻",
-      "tags": ["terminal", "shell", "ssh", "dev"],
-      "size": "28MB",
-      "downloads": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/quickterm/quickterm-windows.zip",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/quickterm/quickterm-linux.tar.gz",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/quickterm/quickterm-macos.tar.gz"
-      },
-      "install_scripts": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/windows/install-quickterm.bat",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/linux/install-quickterm.sh",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/macos/install-quickterm.sh"
-      },
-      "dependencies": [],
-      "changelog": {
-        "1.5.2": "Correção de bug no SSH tunneling",
-        "1.5.0": "Adicionado suporte a tabs ilimitadas",
-        "1.0.0": "Lançamento inicial"
-      },
-      "screenshots": [],
-      "homepage": "https://github.com/SEU_USUARIO/quickterm"
-    },
-    {
-      "id": "pixelcrop",
-      "name": "PixelCrop",
-      "version": "3.0.1",
-      "category": "Design",
-      "description": "Editor de imagens leve com corte preciso, redimensionamento em lote e conversão de formatos.",
-      "author": "PixelLabs",
-      "icon": "🎨",
-      "tags": ["imagem", "editor", "design", "foto"],
-      "size": "45MB",
-      "downloads": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/pixelcrop/pixelcrop-windows.zip",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/pixelcrop/pixelcrop-linux.tar.gz",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/pixelcrop/pixelcrop-macos.tar.gz"
-      },
-      "install_scripts": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/windows/install-pixelcrop.bat",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/linux/install-pixelcrop.sh",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/macos/install-pixelcrop.sh"
-      },
-      "dependencies": [],
-      "changelog": {
-        "3.0.1": "Fix crítico no processamento de PNGs transparentes",
-        "3.0.0": "Nova engine de renderização 2x mais rápida"
-      },
-      "screenshots": [],
-      "homepage": "https://github.com/SEU_USUARIO/pixelcrop"
-    },
-    {
-      "id": "syncfiles",
-      "name": "SyncFiles",
-      "version": "1.2.0",
-      "category": "Utilitários",
-      "description": "Sincronização de pastas local com agendamento, exclusões por padrão e log detalhado.",
-      "author": "SyncTeam",
-      "icon": "🔄",
-      "tags": ["sync", "backup", "arquivos", "utilitário"],
-      "size": "8MB",
-      "downloads": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/syncfiles/syncfiles-windows.zip",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/syncfiles/syncfiles-linux.tar.gz",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/syncfiles/syncfiles-macos.tar.gz"
-      },
-      "install_scripts": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/windows/install-syncfiles.bat",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/linux/install-syncfiles.sh",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/macos/install-syncfiles.sh"
-      },
-      "dependencies": [],
-      "changelog": {
-        "1.2.0": "Adicionado agendamento por cron expression",
-        "1.0.0": "Lançamento inicial"
-      },
-      "screenshots": [],
-      "homepage": "https://github.com/SEU_USUARIO/syncfiles"
-    },
-    {
-      "id": "netwatch",
-      "name": "NetWatch",
-      "version": "2.3.0",
-      "category": "Rede",
-      "description": "Monitor de rede em tempo real. Exibe uso de banda, conexões ativas, latência e alertas configuráveis.",
-      "author": "NetworkPro",
-      "icon": "📡",
-      "tags": ["rede", "monitor", "bandwidth", "segurança"],
-      "size": "15MB",
-      "downloads": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/netwatch/netwatch-windows.zip",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/netwatch/netwatch-linux.tar.gz",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/apps/netwatch/netwatch-macos.tar.gz"
-      },
-      "install_scripts": {
-        "windows": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/windows/install-netwatch.bat",
-        "linux": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/linux/install-netwatch.sh",
-        "macos": "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/scripts/macos/install-netwatch.sh"
-      },
-      "dependencies": [],
-      "changelog": {
-        "2.3.0": "Dashboard redesenhado e alertas por email",
-        "2.0.0": "Suporte a IPv6"
-      },
-      "screenshots": [],
-      "homepage": "https://github.com/SEU_USUARIO/netwatch"
+      "homepage": "https://github.com/BegulaIsBegning/pancaked"
     }
   ]
 }
